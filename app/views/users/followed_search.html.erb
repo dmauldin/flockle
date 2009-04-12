@@ -1,0 +1,16 @@
+<%= @user.name %>'s relevant tweets:
+
+<table>
+  <% @relevant_tweets.each do |tweet| %>
+    <tr>
+      <td>
+        <%= image_tag result.profile_image_url, :class => 'profile-image' %>
+      </td>
+      <td>
+        <%= tweet.from_user %>
+        said
+        "<%= linkify tweet.text %>"
+      </td>
+    </tr>
+  <% end %>
+</table>

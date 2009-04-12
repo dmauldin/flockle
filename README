@@ -1,0 +1,6 @@
+get user's friend list
+create user objects for each friend
+create friend relationship
+update every hour
+for each user that has an access token (users that have logged into site)
+  do incremental search for all messages containing friend screen names

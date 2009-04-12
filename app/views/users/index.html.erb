@@ -1,0 +1,5 @@
+<% @users.each do |user| %>
+  <div class="user">
+    <%= [link_to(user.name,user_path(user)), user.location, user.description].join(" :: ") %>
+  </div>
+<% end # user %>

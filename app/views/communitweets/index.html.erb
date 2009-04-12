@@ -1,0 +1,17 @@
+<%= params[:screen_name] %>'s relevant tweets:
+
+<table>
+  <% @results.each do |tweet| %>
+    <tr>
+      <td>
+        <%= image_tag tweet.profile_image_url, :class => 'profile-image' %>
+      </td>
+      <td>
+        At <%= tweet.created_at %>
+        <%= tweet.from_user %>
+        said
+        "<%= linkify tweet.text %>"
+      </td>
+    </tr>
+  <% end %>
+</table>
