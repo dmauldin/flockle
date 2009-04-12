@@ -4,3 +4,28 @@ create friend relationship
 update every hour
 for each user that has an access token (users that have logged into site)
   do incremental search for all messages containing friend screen names
+
+probably need to fork the twitter-auth gem to either:
+  * add a twitter_id column obtained from the /users/show result's id field
+  * actually create the new user record with id = actual twitter id
+
+finalize tweet model
+
+figure out a friend model to join users together
+  * user.followers
+  * user.friends
+
+http://twitter.com/users/show.xml?screen_name=dmauldin
+
+http://apiwiki.twitter.com/REST-API-Documentation
+
+possible names:
+  tweeterly  = generic
+  twelevance = hard to type
+  twirble    = no connection
+  twerla     = doesn't really have any connection
+* flockle    = somewhat hard to type
+  tweetclan  = clan has kind of a negative feel
+  metaclan   = clan has kind of a negative feel
+  tweetilary = connection?
+  twitilary  = too hard to type
