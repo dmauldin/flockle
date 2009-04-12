@@ -1,4 +1,4 @@
-<%= params[:screen_name] %>'s relevant tweets:
+Flockle list for <%= link_to params[:screen_name], "http://twitter.com/#{params[:screen_name]}" %>
 
 <table>
   <% @results.each do |tweet| %>

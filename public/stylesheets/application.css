@@ -1,4 +1,5 @@
 .profile-image { width: 48px; height: 48px; }
-.pre-tweet { color: #55F; }
+.pre-tweet { color: #75F; }
 body, th, td { font-family: tahoma, helvetica, arial, sans-serif; font-size: 15px;}
-a { color: blue; }
+a { color: blue; text-decoration: none; }
+a:hover { color: purple; }
