@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+  ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
+    :short  => "%m/%d/%Y %I:%M%p",
+    :short24  => "%m/%d/%Y %H:%M"
+  )
 end

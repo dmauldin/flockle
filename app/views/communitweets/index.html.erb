@@ -7,9 +7,11 @@
         <%= image_tag tweet.profile_image_url, :class => 'profile-image' %>
       </td>
       <td>
-        At <%= tweet.created_at %>
-        <%= tweet.from_user %>
-        said
+        <span class="pre-tweet">
+          <%= time_ago_in_words(Time.parse(tweet.created_at)).capitalize %> ago, 
+          <%= link_to tweet.from_user, "http://twitter.com/#{tweet.from_user}" %>
+          said
+        </span>
         "<%= linkify tweet.text %>"
       </td>
     </tr>
