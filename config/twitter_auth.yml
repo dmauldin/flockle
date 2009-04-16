@@ -16,9 +16,9 @@ test:
   oauth_callback: "http://localhost:3000/oauth_callback"
 production:
   strategy: oauth
-  oauth_consumer_key: prodkey
-  oauth_consumer_secret: prodsecret
+  oauth_consumer_key: wYWX1YMWRdd9ud1EIwBg
+  oauth_consumer_secret: MPaTo9CFoMKnEkyJzsDDRxiXXif0OcXsjHAv5GdU
   base_url: "https://twitter.com"
   api_timeout: 10
   remember_for: 14 # days
-
+  oauth_callback: "http://flockle.com/oauth_callback"
