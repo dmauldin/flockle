@@ -37,28 +37,24 @@ module Twelevant
       queries = Twelevant.search_queries_from_names(users)
       results = []
       queries.each do |query|
-        RAILS_DEFAULT_LOGGER.debug "XXX about to do a search in tweets_to_users"
         results << search(query)
       end
-      return results.map{|r|r['results']}.flatten
+      results = results.map{|r|r['results']}.flatten
+      results.empty? ? nil : results
     end
     
     def self.tweets_from_users(users, options = {})
       results = []
       users.each do |user|
-        results << search("from#%3A#{user}")
+        results << search("from:#{user}")
       end
-      return results.map{|r|r['results']}.flatten
-    end
-    
-    def self.tweets_relevant_to_user(user)
-      
+      results = results.map{|r|r['results']}.flatten
+      results.empty? ? nil : results
     end
     
     def self.search(query)
       format :json
       url = "http://search.twitter.com/search.json"
-      RAILS_DEFAULT_LOGGER.debug "XXX #{query} #{query.class}"
       get url, :query => {:q => query}
     end
   end

@@ -3,3 +3,5 @@
 body, th, td { font-family: tahoma, helvetica, arial, sans-serif; font-size: 15px;}
 a { color: blue; text-decoration: none; }
 a:hover { color: purple; }
+.from_friend { font-size: 1.1em; }
+.to_friend { font-size: 0.9em; }

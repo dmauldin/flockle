@@ -29,3 +29,5 @@ possible names:
   metaclan   = clan has kind of a negative feel
   tweetilary = connection?
   twitilary  = too hard to type
+
+When adding tests, be sure to add a test for using from 1 to 30 screen names for a search.  Ran into a problem today (apr-15-09) where if there was just enough names to have 1 spill over into the next query by itself, it'd get treated as an array and not a string.
