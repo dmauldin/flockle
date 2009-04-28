@@ -20,8 +20,10 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
 
-  config.gem 'twitter-auth', :lib => 'twitter_auth'
-  config.gem 'twitter'
+  # config.gem 'twitter-auth', :lib => 'twitter_auth'
+  # config.gem 'twitter'\
+  config.gem 'httparty', :version => '0.4.3'
+  # config.gem 'crack', :version => '0.1.2'
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
