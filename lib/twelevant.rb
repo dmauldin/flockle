@@ -26,9 +26,9 @@ module Twelevant
   
   class Retrieve
     include HTTParty
-    format :xml
     
     def self.friends(query)
+      format :xml
       url = "http://twitter.com/statuses/friends.xml"
       get(url, :query => query)['users']
     end
