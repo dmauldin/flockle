@@ -31,3 +31,8 @@ possible names:
   twitilary  = too hard to type
 
 When adding tests, be sure to add a test for using from 1 to 30 screen names for a search.  Ran into a problem today (apr-15-09) where if there was just enough names to have 1 spill over into the next query by itself, it'd get treated as an array and not a string.
+
+ideas for caching...
+  quickly display existing tweets and a loading animation while fetching new tweets
+  could insert tweets into list as they arrive
+    how to do that without annoying the user by bumping the list down every second or so...
