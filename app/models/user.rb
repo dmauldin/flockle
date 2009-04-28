@@ -1,2 +1,2 @@
-class User < TwitterAuth::GenericUser
+class User < ActiveRecord::Base
 end
