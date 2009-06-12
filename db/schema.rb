@@ -9,7 +9,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090410021740) do
+ActiveRecord::Schema.define(:version => 20090610225053) do
+
+  create_table "relevant_tweets", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "tweet_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tweets", :force => true do |t|
+    t.string   "text"
+    t.string   "from_user"
+    t.integer  "to_user_id"
+    t.string   "iso_language_code"
+    t.integer  "from_user_id"
+    t.string   "source"
+    t.string   "profile_image_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "to_user"
+  end
+
+  add_index "tweets", ["from_user_id"], :name => "index_tweets_on_from_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "login"
@@ -38,6 +60,8 @@ ActiveRecord::Schema.define(:version => 20090410021740) do
     t.string   "time_zone"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "flock_since_id"
+    t.integer  "flock_max_id"
   end
 
 end

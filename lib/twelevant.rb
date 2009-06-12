@@ -26,6 +26,8 @@ module Twelevant
   
   class Retrieve
     include HTTParty
+    # normally you'd specify your format here, but in production, it will
+    # persist, so you'll need to call it again before each get anyway
     
     def self.friends(query)
       format :xml
@@ -33,20 +35,27 @@ module Twelevant
       get(url, :query => query)['users']
     end
 
-    def self.tweets_to_users(users, options = {})
+    def self.tweets_to(users, options = {})
       queries = Twelevant.search_queries_from_names(users)
       results = []
       queries.each do |query|
+        if options[:since_id]
+          query = query + options[:since_id].to_s
+        end
         results << search(query)
       end
       results = results.map{|r|r['results']}.flatten
       results.empty? ? nil : results
     end
     
-    def self.tweets_from_users(users, options = {})
+    def self.tweets_from(users, options = {})
       results = []
       users.each do |user|
-        results << search("from:#{user}")
+        query = "from:#{user}"
+        if options[:since_id]
+          query = query + options[:since_id].to_s
+        end
+        results << search(query)
       end
       results = results.map{|r|r['results']}.flatten
       results.empty? ? nil : results
