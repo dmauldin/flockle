@@ -1,6 +1,11 @@
 class CommunitweetsController < ApplicationController
   def index
     screen_name = params[:screen_name]
+    @names = Twelevant::Retrieve.friends(:screen_name => screen_name)
+    if @names.nil?
+      render :text => "I'm sorry, I couldn't find a twitter account with the name \"#{screen_name}\"", :status => 500
+      return
+    end
     @user = User.find_by_login(screen_name, :include => [:relevant_tweets]) || User.create(:login => screen_name)
     
     # make a list of screen names from the friends of the specified account
