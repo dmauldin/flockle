@@ -11,6 +11,6 @@ class CommunitweetsController < ApplicationController
     # TODO : just display existing tweets here and get new through ajax call
     Twelevant::Retrieve.relevant_tweets(@user, @names)
     
-    @results = @user.tweets.all(:limit => 300, :order => 'tweets.id desc')
+    @results = @user.tweets.all(:limit => 300, :order => 'tweets.tweet_id desc')
   end
 end

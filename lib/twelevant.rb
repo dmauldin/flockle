@@ -73,54 +73,25 @@ module Twelevant
     #        have to get the list of names twice via http
     def self.relevant_tweets(user, names)
       options = {}
-      unless user.tweets.empty?
-        options[:since_id] = user.tweets.last.id
+      unless user.relevant_tweets.empty?
+        options[:since_id] = user.relevant_tweets.maximum(:tweet_id)
       end
 
-      new_results = []
+      results = []
+      
       # tweets to friends
-      new_results << Twelevant::Retrieve.tweets_to(names, options)
+      results << Twelevant::Retrieve.tweets_to(names, options)
 
       # tweets from friends
-      new_results << Twelevant::Retrieve.tweets_from(names, options)
-
-      unless new_results.empty?
-        new_results = new_results.flatten.compact.sort{|a,b| a['id']<=>b['id']}.reverse
+      results << Twelevant::Retrieve.tweets_from(names, options)
       
-        # TODO: optimize this
-        # we're trying to get all of the tweets with a unique id value
-        # assuming they're sorted by id, you can just pass on hashes with the
-        # same id as the previous hash
-        # really needs to be results.uniq_by {|r| r['id']}
-        results = []
-        new_results.each_index do |i|
-          if i > 0
-            unless new_results[i]['id'] == new_results[i-1]['id']
-              results << new_results[i]
-            end
-          else
-            results << new_results[i]
-          end
-        end
+      results = results.flatten.compact
 
-        # this creates tweets and adds to user's tweets seperately so that
-        # if a user follows someone that already has tweets in the system
-        # they just get the existing tweets added as relevant
-        # TODO : removing tweets from user when they're no longer followed
-        tweet_ids = Tweet.all.map(&:id)
-        user_tweet_ids = user.tweets.map(&:id)
+      unless results.empty?
         results.each do |result|
-          result_id = result.delete 'id'
-          unless tweet_ids.include?(result_id)
-            tweet = Tweet.new
-            tweet.id = result_id
-            tweet.update_attributes(result)
-            tweet_ids << result_id
-          end
-          unless user_tweet_ids.include?(result_id)
-            user.relevant_tweets.create(:tweet_id => result_id)
-            user_tweet_ids << result_id
-          end
+          result['tweet_id'] = result.delete('id')
+          tweet = Tweet.find_by_tweet_id(result['tweet_id']) || Tweet.create(result)
+          user.tweets << tweet unless user.tweets.include?(tweet)
         end
       end
     end

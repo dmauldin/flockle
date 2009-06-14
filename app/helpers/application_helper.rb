@@ -6,6 +6,6 @@ module ApplicationHelper
   end
   
   def reply_link(tweet)
-    "http://twitter.com/home?status=@#{tweet.from_user}%20&in_reply_to_status_id=#{tweet.id}&in_reply_to=#{tweet.from_user}"
+    "http://twitter.com/home?status=@#{tweet.from_user}%20&in_reply_to_status_id=#{tweet.tweet_id}&in_reply_to=#{tweet.from_user}"
   end
 end
