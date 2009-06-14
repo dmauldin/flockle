@@ -103,15 +103,23 @@ module Twelevant
           end
         end
 
+        # this creates tweets and adds to user's tweets seperately so that
+        # if a user follows someone that already has tweets in the system
+        # they just get the existing tweets added as relevant
+        # TODO : removing tweets from user when they're no longer followed
         tweet_ids = Tweet.all.map(&:id)
-        # now that we have a unique list, we will insert them into the db
+        user_tweet_ids = user.tweets.map(&:id)
         results.each do |result|
-          unless tweet_ids.include?(result['id'])
+          result_id = result.delete 'id'
+          unless tweet_ids.include?(result_id)
             tweet = Tweet.new
-            tweet.id = result.delete 'id'
+            tweet.id = result_id
             tweet.update_attributes(result)
-            user.tweets << tweet
-            tweet_ids << tweet.id
+            tweet_ids << result_id
+          end
+          unless user_tweet_ids.include?(result_id)
+            user.relevant_tweets.create(:tweet_id => result_id)
+            user_tweet_ids << result_id
           end
         end
       end
