@@ -10,7 +10,7 @@ class CommunitweetsController < ApplicationController
     
     # make a list of screen names from the friends of the specified account
     # and then add their own as well
-    @names = Twelevant::Retrieve.friends(:screen_name => screen_name).map{|f| f['screen_name']} << screen_name
+    @names = @names.map{|f| f['screen_name']} << screen_name
     
     # get all relevant tweets - also puts them in the database
     # TODO : just display existing tweets here and get new through ajax call

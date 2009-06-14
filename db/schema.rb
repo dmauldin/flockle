@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090614212814) do
+ActiveRecord::Schema.define(:version => 20090614221117) do
 
   create_table "relevant_tweets", :force => true do |t|
     t.integer  "user_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20090614212814) do
     t.datetime "updated_at"
     t.integer  "flock_since_id"
     t.integer  "flock_max_id"
+    t.datetime "scanned_at"
   end
 
 end

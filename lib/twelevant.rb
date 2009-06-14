@@ -43,7 +43,7 @@ module Twelevant
       results = []
       queries.each do |query|
         if options[:since_id]
-          query = query + "&since_id=#{options[:since_id].to_s}"
+          query = query + " since:#{options[:since]}"
         end
         results << search(query)
       end
@@ -73,10 +73,12 @@ module Twelevant
     #        have to get the list of names twice via http
     def self.relevant_tweets(user, names)
       options = {}
-      unless user.relevant_tweets.empty?
-        options[:since_id] = user.relevant_tweets.maximum(:tweet_id)
+      unless user.scanned_at.nil?
+        options[:since] = user.scanned_at.strftime("%Y-%m-%d")
       end
-
+      
+      user.update_attribute(:scanned_at, Time.now)
+      
       results = []
       
       # tweets to friends
