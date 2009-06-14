@@ -1,8 +1,17 @@
 .profile-image { width: 48px; height: 48px; }
 .pre-tweet { color: #75F; }
-body, th, td { font-family: tahoma, helvetica, arial, sans-serif; font-size: 15px;}
+body, th, td { 
+  font-family: tahoma, helvetica, arial, sans-serif; font-size: 15px;
+}
 a { color: blue; text-decoration: none; }
 a:hover { color: purple; }
 .from_friend { background-color: #DDE;}
 .to_friend { background-color: #EEF; }
 .to_friend td { font-size: 0.8em;}
+.user-icon {width: 48px;}
+.tweet { padding: 5px;}
+.tweet a.reply-link { 
+  font-size: 12px; color: #779; border: 1px solid #99B;
+  padding: 0px 2px 1px 2px;
+}
+.tweet a.reply-link:hover { background-color: #E0ECF8; color: #336;;}

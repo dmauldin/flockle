@@ -2,17 +2,18 @@ Flockle list for <%= link_to params[:screen_name], "http://twitter.com/#{params[
 
 <table>
   <% @results.each do |tweet| %>
-    <%= tag "tr", {:class => @friends.include?(tweet.from_user) ? "from_friend" : "to_friend" }, true %>
-      <td>
+    <%= tag "tr", {:class => @names.include?(tweet.from_user) ? "from_friend" : "to_friend", :id => tweet.id}, true %>
+      <td class="user-icon">
         <%= image_tag tweet.profile_image_url, :class => 'profile-image' %>
       </td>
-      <td>
+      <td class="tweet">
         <span class="pre-tweet">
           <%= time_ago_in_words(tweet.created_at).capitalize %> ago, 
           <%= link_to tweet.from_user, "http://twitter.com/#{tweet.from_user}" %>
           said
         </span>
         "<%= linkify tweet.text %>"
+        <%= link_to "Reply", reply_link(tweet), :class => "reply-link" %>
       </td>
     </tr>
   <% end %>
