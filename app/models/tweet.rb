@@ -18,4 +18,6 @@
 
 class Tweet < ActiveRecord::Base
   has_many :relevant_tweets, :dependent => :destroy
+  
+  validates_uniqueness_of :tweet_id
 end

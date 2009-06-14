@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090614022721) do
+ActiveRecord::Schema.define(:version => 20090614212814) do
 
   create_table "relevant_tweets", :force => true do |t|
     t.integer  "user_id"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20090614022721) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "to_user"
-    t.integer  "tweet_id"
+    t.integer  "tweet_id",          :limit => 8
   end
 
   add_index "tweets", ["from_user_id"], :name => "index_tweets_on_from_user_id"
