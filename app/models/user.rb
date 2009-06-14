@@ -35,7 +35,8 @@
 #
 
 class User < ActiveRecord::Base
-  validates_presence_of :login
-  has_many :relevant_tweets
+  has_many :relevant_tweets, :dependent => :destroy
   has_many :tweets, :through => :relevant_tweets
+
+  validates_presence_of :login
 end
