@@ -6,7 +6,8 @@ class CommunitweetsController < ApplicationController
       render :text => "I'm sorry, I couldn't find a twitter account with the name \"#{screen_name}\"", :status => 500
       return
     end
-    @user = User.find_by_login(screen_name, :include => [:relevant_tweets]) || User.create(:login => screen_name)
+
+    @user = User.find_or_create_by_login(screen_name, :include => [{:relevant_tweets => :tweets}])
     
     # make a list of screen names from the friends of the specified account
     # and then add their own as well

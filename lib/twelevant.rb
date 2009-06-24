@@ -89,6 +89,7 @@ module Twelevant
       
       results = results.flatten.compact
 
+      # TODO serious optimization, tests existence with 2 queries each
       unless results.empty?
         results.each do |result|
           result['tweet_id'] = result.delete('id')
